@@ -1,0 +1,7 @@
+description: A Redis database for use inside a Kubernetes cluster.
+home: https://github.com/deis/redis
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: redis
+version: v2.2.7

@@ -1,0 +1,7 @@
+description: Docker registry for Deis Workflow.
+home: https://github.com/deis/registry
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: registry
+version: v2.4.2

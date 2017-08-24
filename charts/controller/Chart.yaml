@@ -1,0 +1,7 @@
+description: Deis Workflow Controller (API).
+home: https://github.com/deis/controller
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: controller
+version: v2.17.1

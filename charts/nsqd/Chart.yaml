@@ -1,0 +1,7 @@
+description: A kubernetes based docker image for running nsq daemon.
+home: https://github.com/deis/nsq
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: nsqd
+version: v2.2.8

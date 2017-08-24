@@ -1,0 +1,7 @@
+description: In-memory log buffer used by Deis Workflow.
+home: https://github.com/deis/logger
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: logger
+version: v2.4.4

@@ -1,0 +1,30 @@
+{{- if not .Values.global.experimental_native_ingress }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: deis-router
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "1200"
+{{- range $key, $value := .Values.service_annotations }}
+    {{ $key }}: {{ quote $value }}
+{{- end }}
+  labels:
+    heritage: deis
+spec:
+  type: {{ default "LoadBalancer" .Values.service_type}}
+  selector:
+    app: deis-router
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+    - name: https
+      port: 443
+      targetPort: 6443
+    - name: builder
+      port: 2222
+      targetPort: 2222
+    - name: healthz
+      port: 9090
+      targetPort: 9090
+{{ end }}{{/* if not .Values.global.experimental_native_ingress */}}

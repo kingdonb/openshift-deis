@@ -1,0 +1,7 @@
+description: Git server and application builder for Deis Workflow.
+home: https://github.com/deis/builder
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: builder
+version: v2.12.0

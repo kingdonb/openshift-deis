@@ -1,0 +1,10 @@
+description: A PostgreSQL database used by Deis Workflow.
+home: https://github.com/deis/postgres
+keywords:
+- database
+- postgres
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: database
+version: v2.5.4

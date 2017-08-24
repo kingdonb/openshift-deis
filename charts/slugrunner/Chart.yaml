@@ -1,0 +1,7 @@
+description: Buildpack application runner for Deis Workflow.
+home: https://github.com/deis/slugrunner
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: slugrunner
+version: v2.4.0

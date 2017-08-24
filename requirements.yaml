@@ -1,0 +1,52 @@
+dependencies:
+  - name: builder
+    version: "v2.12.0"
+    repository: https://charts.deis.com/builder
+  - name: slugbuilder
+    version: "v2.5.0"
+    repository: https://charts.deis.com/slugbuilder
+  - name: dockerbuilder
+    version: "v2.7.3"
+    repository: https://charts.deis.com/dockerbuilder
+  - name: controller
+    version: "v2.17.1"
+    repository: https://charts.deis.com/controller
+  - name: slugrunner
+    version: "v2.4.0"
+    repository: https://charts.deis.com/slugrunner
+  - name: database
+    version: "v2.5.4"
+    repository: https://charts.deis.com/database
+  - name: fluentd
+    version: "v2.10.0"
+    repository: https://charts.deis.com/fluentd
+  - name: redis
+    version: "v2.2.7"
+    repository: https://charts.deis.com/redis
+  - name: logger
+    version: "v2.4.4"
+    repository: https://charts.deis.com/logger
+  - name: minio
+    version: "v2.3.6"
+    repository: https://charts.deis.com/minio
+  - name: monitor
+    version: "v2.10.1"
+    repository: https://charts.deis.com/monitor
+  - name: nsqd
+    version: "v2.2.8"
+    repository: https://charts.deis.com/nsqd
+  - name: registry
+    version: "v2.4.2"
+    repository: https://charts.deis.com/registry
+  - name: registry-proxy
+    version: "v1.4.0"
+    repository: https://charts.deis.com/registry-proxy
+  - name: registry-token-refresher
+    version: "v1.1.3"
+    repository: https://charts.deis.com/registry-token-refresher
+  - name: router
+    version: "v2.13.1"
+    repository: https://charts.deis.com/router
+  - name: workflow-manager
+    version: "v2.5.1"
+    repository: https://charts.deis.com/workflow-manager

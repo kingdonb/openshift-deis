@@ -1,0 +1,5 @@
+org: "deis"
+pull_policy: "IfNotPresent"
+docker_tag: "v2.2.8"
+# limits_cpu: "100m"
+# limits_memory: "50Mi"

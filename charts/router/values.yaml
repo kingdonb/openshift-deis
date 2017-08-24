@@ -1,0 +1,36 @@
+org: "deis"
+pull_policy: "IfNotPresent"
+docker_tag: v2.13.1
+platform_domain: ""
+dhparam: ""
+# limits_cpu: "100m"
+# limits_memory: "50Mi"
+# requests_cpu: "100m"
+# requests_memory: "50Mi"
+
+# Any custom router annotations(https://github.com/deis/router#annotations)
+# which need to be applied can be specified as key-value pairs under "deployment_annotations"
+#deployment_annotations:
+  #<example-key>: <example-value>
+
+# Any custom annotations for k8s services like http://kubernetes.io/docs/user-guide/services/#ssl-support-on-aws
+# which need to be applied can be specified as key-value pairs under "service_annotations"
+#service_annotations:
+  #<example-key>: <example-value>
+
+# Enable to pin router pod hostPort when using minikube or vagrant
+host_port:
+  enabled: false
+
+# Service type default to LoadBalancer
+# service_type: LoadBalancer
+
+global:
+  # Experimental feature to toggle using kubernetes ingress instead of the Deis router.
+  #
+  # Valid values are:
+  # - true: The Deis router will NOT be deployed. Inherently workflow will not be usable until a Kubernetes ingress controller is installed.
+  # - false: The default mode, and the default behavior of Deis workflow.
+  experimental_native_ingress: false
+  # Role-Based Access Control for Kubernetes >= 1.5
+  use_rbac: false

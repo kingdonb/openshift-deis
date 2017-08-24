@@ -1,0 +1,92 @@
+{{- if not .Values.global.experimental_native_ingress }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deis-router
+  labels:
+    heritage: deis
+  annotations:
+    component.deis.io/version: {{ .Values.docker_tag }}
+{{- range $key, $value := .Values.deployment_annotations }}
+    {{ $key }}: {{ quote $value }}
+{{- end }}
+{{- if not (empty .Values.platform_domain) }}
+    router.deis.io/nginx.platformDomain: {{ .Values.platform_domain }}
+{{- end }}
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: deis-router
+  template:
+    metadata:
+      labels:
+        app: deis-router
+    spec:
+      serviceAccount: deis-router
+      containers:
+      - name: deis-router
+        image: quay.io/{{.Values.org}}/router:{{.Values.docker_tag}}
+        imagePullPolicy: {{.Values.pull_policy}}
+{{- if or (.Values.limits_cpu) (.Values.limits_memory) (.Values.requests_cpu) (.Values.requests_memory)}}
+        resources:
+{{- if or (.Values.limits_cpu) (.Values.limits_memory)}}
+          limits:
+{{- if (.Values.limits_cpu) }}
+            cpu: {{.Values.limits_cpu}}
+{{- end}}
+{{- if (.Values.limits_memory) }}
+            memory: {{.Values.limits_memory}}
+{{- end}}
+{{- end}} {{/* end limits section */}}
+{{- if or (.Values.requests_cpu) (.Values.requests_memory)}}
+          requests:
+{{- if (.Values.requests_cpu) }}
+            cpu: {{.Values.requests_cpu}}
+{{- end}}
+{{- if (.Values.requests_memory) }}
+            memory: {{.Values.requests_memory}}
+{{- end}}
+{{- end}} {{/* end requests section */}}
+{{- end}} {{/* end resources section */}}
+
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - containerPort: 8080
+{{- if .Values.host_port.enabled }}
+          hostPort: 80
+{{- end }}
+        - containerPort: 6443
+{{- if .Values.host_port.enabled }}
+          hostPort: 443
+{{- end }}
+        - containerPort: 2222
+{{- if .Values.host_port.enabled }}
+          hostPort: 2222
+{{- end }}
+        - containerPort: 9090
+{{- if .Values.host_port.enabled }}
+          hostPort: 9090
+{{- end }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+{{ end }}{{/* if not .Values.global.experimental_native_ingress */}}

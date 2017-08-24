@@ -1,0 +1,53 @@
+grafana:
+  org: "deis"
+  pull_policy: "IfNotPresent"
+  docker_tag: v2.10.1
+  allow_sign_up: "true"
+  # limits_cpu: "100m"
+  # limits_memory: "50Mi"
+  persistence:
+    enabled: false
+    accessMode: ReadWriteOnce
+    size: 5Gi
+influxdb:
+  org: "deis"
+  pull_policy: "IfNotPresent"
+  docker_tag: v2.10.1
+  # limits_cpu: "100m"
+  # limits_memory: "50Mi"
+  url: "my.influx.url"
+  database: "kubernetes"
+  user: "user"
+  password: "password"
+  persistence:
+    enabled: false
+    accessMode: ReadWriteOnce
+    size: 20Gi
+telegraf:
+  org: "deis"
+  pull_policy: "IfNotPresent"
+  docker_tag: v2.10.1
+  # limits_cpu: "100m"
+  # limits_memory: "50Mi"
+
+global:
+  # Set the location of Workflow's influxdb cluster
+  #
+  # Valid values are:
+  # - on-cluster: Run Influxdb within the Kubernetes cluster
+  # - off-cluster: Influxdb is running outside of the cluster and credentials and connection information will be provided.
+  influxdb_location: "on-cluster"
+  # Set the location of Workflow's grafana instance
+  #
+  # Valid values are:
+  # - on-cluster: Run Grafana within the Kubernetes cluster
+  # - off-cluster: Grafana is running outside of the cluster
+  grafana_location: "on-cluster"
+  # Set the location of Workflow's logger-specific Redis instance
+  #
+  # Valid values are:
+  # - on-cluster: Run Redis within the Kubernetes cluster
+  # - off-cluster: Run Redis outside the Kubernetes cluster (configure in loggerRedis section)
+  logger_redis_location: "on-cluster"
+  # Role-Based Access Control for Kubernetes >= 1.5
+  use_rbac: false

@@ -1,0 +1,7 @@
+description: Edge router for Deis Workflow.
+home: https://github.com/deis/router
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: router
+version: v2.13.1

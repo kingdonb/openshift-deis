@@ -1,0 +1,7 @@
+description: 'Deis Workflow Manager: Cluster First Aid'
+home: https://github.com/deis/workflow-manager
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: workflow-manager
+version: v2.5.1

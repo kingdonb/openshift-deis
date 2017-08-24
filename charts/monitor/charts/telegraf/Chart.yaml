@@ -1,0 +1,7 @@
+description: Monitoring for Deis Workflow.
+home: https://github.com/deis/monitor/tree/master/telegraf
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: telegraf
+version: <Will be populated by the ci before publishing the chart>

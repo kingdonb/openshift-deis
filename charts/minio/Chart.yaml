@@ -1,0 +1,7 @@
+description: Minio Object Storage in Kubernetes, used by Deis Workflow.
+home: https://github.com/deis/minio
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: minio
+version: v2.3.6

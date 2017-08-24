@@ -1,0 +1,7 @@
+description: Log shipping mechanism for Deis Workflow.
+home: https://github.com/deis/fluentd
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: fluentd
+version: v2.10.0

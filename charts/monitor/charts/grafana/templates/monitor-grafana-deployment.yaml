@@ -1,0 +1,85 @@
+{{- if eq .Values.global.grafana_location "on-cluster" }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deis-monitor-grafana
+  labels:
+    heritage: deis
+  annotations:
+    component.deis.io/version: {{ .Values.docker_tag }}
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: deis-monitor-grafana
+  template:
+    metadata:
+      labels:
+        app: deis-monitor-grafana
+    spec:
+      containers:
+      - name: deis-monitor-grafana
+        image: quay.io/{{.Values.org}}/grafana:{{.Values.docker_tag}}
+        imagePullPolicy: {{.Values.pull_policy}}
+{{- if or (.Values.limits_cpu) (.Values.limits_memory)}}
+        resources:
+          limits:
+{{- if (.Values.limits_cpu) }}
+            cpu: {{.Values.limits_cpu}}
+{{- end}}
+{{- if (.Values.limits_memory) }}
+            memory: {{.Values.limits_memory}}
+{{- end}}
+{{- end}}
+        env:
+        {{- if eq .Values.global.influxdb_location "off-cluster" }}
+        - name: "INFLUXDB_SERVICE_URL"
+          valueFrom:
+            secretKeyRef:
+              name: influxdb-creds
+              key: url
+        - name: "INFLUXDB_DATABASE"
+          valueFrom:
+            secretKeyRef:
+              name: influxdb-creds
+              key: database
+        - name: "INFLUXDB_USER"
+          valueFrom:
+            secretKeyRef:
+              name: influxdb-creds
+              key: user
+        - name: "INFLUXDB_PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: influxdb-creds
+              key: password
+        {{- else }}
+        - name: "INFLUXDB_URLS"
+          value: http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)
+        {{- end }}
+        - name: "BIND_PORT"
+          value: "3500"
+        - name: "DEFAULT_USER"
+          value: {{.Values.user}}
+        - name: "DEFAULT_USER_PASSWORD"
+          value: {{.Values.password}}
+        - name: "ALLOW_SIGN_UP"
+          value: {{.Values.allow_sign_up | quote}}
+        ports:
+        - containerPort: 3500
+          name: ui
+{{- if .Values.persistence.enabled }}
+        volumeMounts:
+        - name: grafana-data
+          mountPath: /var/lib/grafana
+      volumes:
+      - name: grafana-data
+        persistentVolumeClaim:
+          claimName: deis-monitor-grafana
+{{- end }}
+{{- end }}

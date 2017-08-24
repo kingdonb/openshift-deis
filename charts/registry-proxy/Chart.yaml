@@ -1,0 +1,7 @@
+description: Deis Workflow Registry Proxy.
+home: https://github.com/deis/registry-proxy
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: registry-proxy
+version: v1.4.0

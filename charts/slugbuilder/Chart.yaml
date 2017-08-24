@@ -1,0 +1,7 @@
+description: Buildpack application builder for Deis Workflow.
+home: https://github.com/deis/slugbuilder
+maintainers:
+- email: engineering@deis.com
+  name: Deis Team
+name: slugbuilder
+version: v2.5.0
