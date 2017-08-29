@@ -13,3 +13,21 @@ rules:
   verbs: ["get"]
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+kind: Role
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deis-monitor-telegraf
+    heritage: deis
+  name: deis-monitor-telegraf
+rules:
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - pods
+  verbs:
+  - get
+{{- end -}}
