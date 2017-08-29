@@ -13,3 +13,22 @@ rules:
   verbs: ["get"]
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+kind: Role
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deis-router
+    heritage: deis
+  name: deis-router
+rules:
+- apiGroups:
+  - extensions
+  - apps
+  attributeRestrictions: null
+  resources:
+  - deployments
+  verbs:
+  - get
+{{- end -}}

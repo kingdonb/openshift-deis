@@ -14,3 +14,18 @@ subjects:
   namespace: {{ .Release.Namespace }}
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+groupNames: null
+kind: RoleBinding
+metadata:
+  creationTimestamp: null
+  name: deis-router
+roleRef:
+  name: deis-router
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: deis-router
+  namespace: {{ .Release.Namespace }}
+{{- end -}}
