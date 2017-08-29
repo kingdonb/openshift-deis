@@ -17,3 +17,20 @@ subjects:
   namespace: {{ .Release.Namespace }}
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+groupNames: null
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deis-controller
+    heritage: deis
+  name: deis:deis-controller
+roleRef:
+  name: deis:deis-controller
+subjects:
+- kind: ServiceAccount
+  name: deis-controller
+  namespace: {{ .Release.Namespace }}
+{{- end -}}

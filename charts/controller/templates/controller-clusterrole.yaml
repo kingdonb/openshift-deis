@@ -57,3 +57,148 @@ rules:
 {{- end -}}
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deis-controller
+    heritage: deis
+  name: deis:deis-controller
+rules:
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - namespaces
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - services
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - nodes
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - events
+  verbs:
+  - create
+  - list
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - replicationcontrollers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - replicationcontrollers/scale
+  verbs:
+  - get
+  - update
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - pods/log
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - pods
+  verbs:
+  - delete
+  - get
+  - list
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - resourcequotas
+  verbs:
+  - create
+  - get
+- apiGroups:
+  - extensions
+  attributeRestrictions: null
+  resources:
+  - replicasets
+  verbs:
+  - delete
+  - get
+  - list
+  - update
+- apiGroups:
+  - extensions
+  - apps
+  attributeRestrictions: null
+  resources:
+  - deployments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+- apiGroups:
+  - extensions
+  attributeRestrictions: null
+  resources:
+  - deployments/scale
+  - replicasets/scale
+  verbs:
+  - get
+  - update
+- apiGroups:
+  - extensions
+  - autoscaling
+  attributeRestrictions: null
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+{{- end -}}
