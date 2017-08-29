@@ -74,6 +74,8 @@ global:
   # - true: all RBAC-related manifests will be installed (in case your cluster supports RBAC)
   # - false: no RBAC-related manifests will be installed
   use_rbac: false
+  # OpenShift does not yet accept Kubernetes RBAC roles directly, but it can emulate them
+  use_openshift_rbac: true
 
 
 s3:
