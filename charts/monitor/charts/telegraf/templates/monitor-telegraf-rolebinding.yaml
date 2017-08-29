@@ -16,3 +16,21 @@ subjects:
   name: deis-monitor-telegraf
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+groupNames: null
+kind: RoleBinding
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deis-monitor-telegraf
+    heritage: deis
+  name: deis-monitor-telegraf
+roleRef:
+  name: deis-monitor-telegraf
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: deis-monitor-telegraf
+  namespace: {{ .Release.Namespace }}
+{{- end -}}
