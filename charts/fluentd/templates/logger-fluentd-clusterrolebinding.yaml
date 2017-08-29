@@ -17,3 +17,20 @@ subjects:
   namespace: {{ .Release.Namespace }}
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+groupNames: null
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deis-logger-fluentd
+    heritage: deis
+  name: deis:deis-logger-fluentd
+roleRef:
+  name: deis:deis-logger-fluentd
+subjects:
+- kind: ServiceAccount
+  name: deis-logger-fluentd
+  namespace: {{ .Release.Namespace }}
+{{- end -}}

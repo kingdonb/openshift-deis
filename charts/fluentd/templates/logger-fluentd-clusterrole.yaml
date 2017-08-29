@@ -13,3 +13,23 @@ rules:
   verbs: ["list", "get", "watch"]
 {{- end -}}
 {{- end -}}
+{{- if (.Values.global.use_openshift_rbac) -}}
+apiVersion: authorization.openshift.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deis-logger-fluentd
+    heritage: deis
+  name: deis:deis-logger-fluentd
+rules:
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+{{- end -}}
