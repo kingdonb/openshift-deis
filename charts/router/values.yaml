@@ -1,6 +1,6 @@
 org: "deis"
 pull_policy: "IfNotPresent"
-docker_tag: v2.13.1
+docker_tag: v2.13.3
 platform_domain: ""
 dhparam: ""
 # limits_cpu: "100m"

@@ -4,4 +4,4 @@ maintainers:
 - email: engineering@deis.com
   name: Deis Team
 name: workflow
-version: v2.17.0
+version: v2.18.0

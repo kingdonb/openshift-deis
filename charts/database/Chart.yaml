@@ -7,4 +7,4 @@ maintainers:
 - email: engineering@deis.com
   name: Deis Team
 name: database
-version: v2.5.4
+version: v2.5.6

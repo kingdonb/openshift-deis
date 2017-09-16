@@ -1,6 +1,6 @@
 org: "deis"
 pull_policy: "IfNotPresent"
-docker_tag: v2.17.1
+docker_tag: v2.17.3
 app_pull_policy: "IfNotPresent"
 # A comma-separated list of URLs to send app release information to
 # See https://deis.com/docs/workflow/managing-workflow/deploy-hooks

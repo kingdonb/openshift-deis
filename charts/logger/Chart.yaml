@@ -4,4 +4,4 @@ maintainers:
 - email: engineering@deis.com
   name: Deis Team
 name: logger
-version: v2.4.4
+version: v2.4.5

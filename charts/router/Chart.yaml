@@ -4,4 +4,4 @@ maintainers:
 - email: engineering@deis.com
   name: Deis Team
 name: router
-version: v2.13.1
+version: v2.13.3

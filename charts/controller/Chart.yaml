@@ -4,4 +4,4 @@ maintainers:
 - email: engineering@deis.com
   name: Deis Team
 name: controller
-version: v2.17.1
+version: v2.17.3

@@ -1,6 +1,6 @@
 org: "deis"
 pull_policy: "IfNotPresent"
-docker_tag: v2.5.4
+docker_tag: v2.5.6
 # limits_cpu: "100m"
 # limits_memory: "50Mi"
 # The username and password to be used by the on-cluster database.
