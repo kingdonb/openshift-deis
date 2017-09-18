@@ -28,6 +28,10 @@ spec:
 {{- end}}
       containers:
       - name: deis-registry-proxy
+{{- if (.Values.global.use_openshift_rbac) }}
+        securityContext:
+          privileged: true
+{{- end }}
         image: quay.io/{{.Values.org}}/registry-proxy:{{.Values.docker_tag}}
         imagePullPolicy: {{.Values.pull_policy}}
 {{- if or (.Values.limits_cpu) (.Values.limits_memory)}}

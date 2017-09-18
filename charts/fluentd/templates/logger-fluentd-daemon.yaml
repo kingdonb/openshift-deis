@@ -25,6 +25,10 @@ spec:
       serviceAccount: deis-logger-fluentd
       containers:
       - name: deis-logger-fluentd
+{{- if (.Values.global.use_openshift_rbac) }}
+        securityContext:
+          privileged: true
+{{- end }}
         image: quay.io/{{.Values.org}}/fluentd:{{.Values.docker_tag}}
         imagePullPolicy: {{.Values.pull_policy}}
 {{- if or (.Values.limits_cpu) (.Values.limits_memory)}}

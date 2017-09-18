@@ -24,6 +24,10 @@ spec:
       serviceAccount: deis-controller
       containers:
         - name: deis-controller
+{{- if (.Values.global.use_openshift_rbac) }}
+          securityContext:
+            privileged: true
+{{- end }}
           image: quay.io/{{.Values.org}}/controller:{{.Values.docker_tag}}
           imagePullPolicy: {{.Values.pull_policy}}
           livenessProbe:
