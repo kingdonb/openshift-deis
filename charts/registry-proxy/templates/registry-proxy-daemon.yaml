@@ -26,6 +26,9 @@ spec:
 {{- if (.Values.global.use_cni) }}
       hostNetwork: true
 {{- end}}
+{{- if (.Values.global.use_openshift_rbac) }}
+      serviceAccount: deis-registry-proxy
+{{- end }}
       containers:
       - name: deis-registry-proxy
 {{- if (.Values.global.use_openshift_rbac) }}
