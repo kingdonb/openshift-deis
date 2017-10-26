@@ -56,7 +56,7 @@ global:
   # Valid values are:
   # - true: deis-router will not be deployed. Workflow will not be usable until a Kubernetes ingress controller is installed.
   # - false: deis-router will be deployed (default).
-  experimental_native_ingress: false
+  experimental_native_ingress: true
   # If the Kubernetes cluster uses CNI
   # use_cni: true
   # Set the `listen` variable for registry-proxy's NGINX
