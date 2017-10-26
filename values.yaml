@@ -133,7 +133,7 @@ controller:
   # The publicly resolvable hostname to build your cluster with.
   #
   # This will be the hostname that is used to build endpoints such as "deis.$HOSTNAME"
-  platform_domain: ""
+  platform_domain: "ryan.nerdland.info"
 
 database:
   # The username and password to be used by the on-cluster database.
